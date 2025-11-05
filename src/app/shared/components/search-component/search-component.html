@@ -1,0 +1,11 @@
+<input 
+    type="text"
+    class="input input-bodered mr-2 w-56"
+    [placeholder]= "placeholder()"
+    autofocus
+    #txt
+    (keyup.enter)="value.emit(txt.value)"
+    >
+    <button class="btn btn-ghost" (click)="value.emit(txt.value)">
+        Buscar
+    </button>
