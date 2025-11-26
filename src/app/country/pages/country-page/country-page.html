@@ -1,1 +1,9 @@
-<p>country-page works!</p>,
+@if(countryResource.error()){
+    <not-found />
+}
+@if (countryResource.isLoading()) {
+    <img class="animate-ping" src="glorp.png" alt="">
+}
+@if (countryResource.hasValue()){
+    <country-info [country]="countryResource.value()"/>
+}

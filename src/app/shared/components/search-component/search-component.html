@@ -1,11 +1,15 @@
-<input 
-    type="text"
-    class="input input-bodered mr-2 w-56"
-    [placeholder]= "placeholder()"
-    autofocus
-    #txt
-    (keyup.enter)="value.emit(txt.value)"
-    >
-    <button class="btn btn-ghost" (click)="value.emit(txt.value)">
-        Buscar
-    </button>
+<section class="flex flex-row gap-2 mt-2">
+    <input 
+        type="text"
+        class="input input-bodered mr-2 w-56"
+        [placeholder]= "placeholder()"
+        autofocus
+        #txt
+        (keyup.enter)="value.emit(txt.value)"
+        (keyup)="inputValue.set(txt.value)"
+        [value]="inputValue()"
+        >
+        <button class="btn btn-ghost" (click)="value.emit(txt.value)">
+            Buscar
+        </button>
+</section>   

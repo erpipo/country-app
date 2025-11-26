@@ -1,4 +1,5 @@
-<table class="table table-md mt-2 w-full">
+<section class="mt-5">
+    <table class="table table-md mt-2 w-full">
         <thead>
             <tr>
                 <th>#</th>
@@ -11,8 +12,50 @@
             </tr>
         </thead>
         <tbody>
+            @for (country of countries(); track country.capital; let index = $index) {
             <tr>
-                <td>1</td>
+                <td>{{index + 1}}</td>
+                <td>{{country.flag}}</td>
+                <td>
+                    <img [src]="country.flagSvg" [alt]="country.name" class="w-10">
+                </td>
+                <td>{{country.name}}</td>
+                <td>{{country.capital}}</td>
+                <td class="badge badge-secondary mt-2.5">
+                    {{country.population | number}}
+                </td>
+                <td>
+                    <a [routerLink]="['/country/by',country.cca2]" class="link-primary" href="">Más información</a>
+                </td>
             </tr>
+            }
+            <!--  -->
+            @if(errorMessage()){
+            <tr>
+                <td colspan="8" class="text-center">
+                    {{errorMessage()}}
+                </td>
+            </tr>
+            }
+            <!--  -->
+            @if(countries().length === 0 && !isLoading()){
+            <tr>
+                <td colspan="8" class="text-center">
+                    No se encontraron resultados
+                </td>
+            </tr>
+            }
+            <!--  -->
+            @if(isLoading()){
+            <tr>
+                <td colspan="8" class="text-center py-4">
+                    <div class="flex flex-col items-center justify-center w-full">
+                        <span class="mb-2">Glorp está buscando países...</span>
+                        <img class="animate-ping" src="glorp.png" alt="cargando glorp">
+                    </div>
+                </td>
+            </tr>
+            }
         </tbody>
     </table>
+</section>

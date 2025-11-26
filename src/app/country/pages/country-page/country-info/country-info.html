@@ -1,0 +1,72 @@
+<section class="">
+    <div class="grid grid-cols-12 gap-8">
+        <div class="text-5xl col-span-6 text-right py-10">
+            <h1>{{country().name}}</h1>
+        </div>
+        <div class="col-span-6">
+            <img class="object-cover pt-3 h-30" [src]="country().flagSvg" alt="">
+        </div>
+    </div>
+    <div class="grid grid-cols-12 gap-8 m-3">
+        <div class="hover-3d col-span-2 col-start-6">
+            <figure class="rounded-2xl">
+                <img [src]="country().coat" alt="" class="h-50 w-full">
+            </figure>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+    </div>
+    <div class="divider"></div>
+    <div class="grid grid-cols-12 gap-8 text-center m-3">
+        <div class="stats shadow col-span-full">
+            <div class="stat place-items-center">
+                <div class="stat-title">Población</div>
+                <div class="stat-value">{{country().population | number}}</div>
+                <div class="stat-desc">No actualizado a tiempo real</div>
+            </div>
+
+            <div class="stat place-items-center">
+                <div class="stat-title">{{ country().region }}</div>
+                <div class="stat-value text-amber-300">{{ country().subregion }}</div>
+            </div>
+
+            <div class="stat place-items-center">
+                <div class="stat-title">Área</div>
+                <div class="stat-value">{{ country().area | number }}</div>
+                <div class="stat-desc">km²</div>
+            </div>
+        </div>
+    </div>
+    <div class="grid grid-cols-12 gap-8 text-center">
+        <div class="col-span-6">
+            <span>
+                Pronunciaciones:
+                <span class="text-rotate">
+                    <span>
+                        @for (spelling of country().altSpellings; track $index) {
+                        <span class="txt-xl font-thin text-amber-300">{{ country().altSpellings[$index] }}</span>
+                        }
+                    </span>
+                </span>
+            </span>
+        </div>
+        <div class="col-span-6">
+            <span>
+                Fronteras:
+                <span class="text-rotate">
+                    <span>
+                        @for (border of country().borders; track $index) {
+                        <span class="txt-xl font-thin text-amber-300">{{ country().borders[$index] }}</span>
+                        }
+                    </span>
+                </span>
+            </span>
+        </div>
+    </div>
+</section>
